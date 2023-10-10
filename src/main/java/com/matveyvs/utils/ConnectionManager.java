@@ -1,18 +1,20 @@
 package com.matveyvs.utils;
 
-import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.SQLTimeoutException;
 
+@Component
 public class ConnectionManager {
     private static String URL_KEY;
     private static String URL_NAME;
     private static String URL_PASSWORD;
     private static String URL_DRIVER;
-    public ConnectionManager(String urlKey, String urlName, String urlPassword, String urlDriver) {
+
+    public ConnectionManager(String urlKey, String urlName, String urlPassword,
+                             String urlDriver) {
         ConnectionManager.URL_KEY = urlKey;
         ConnectionManager.URL_NAME = urlName;
         ConnectionManager.URL_PASSWORD = urlPassword;

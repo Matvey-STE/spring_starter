@@ -2,12 +2,14 @@ package com.matveyvs.database.repository;
 
 import com.matveyvs.entity.Company;
 import com.matveyvs.utils.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
+@Repository
 public class CompanyRepository {
 
     private static final String FIND_BY_ID_SQL = """
@@ -28,13 +30,15 @@ public class CompanyRepository {
             throw new RuntimeException(e);
         }
     }
+
     public Optional<Company> findById(Integer id) {
         try (var connection = ConnectionManager.open()) {
-            return findById(id,connection);
+            return findById(id, connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     private Company buildCompany(ResultSet result) throws SQLException {
         return Company.builder()
                 .id(result.getInt("id"))

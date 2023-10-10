@@ -3,12 +3,14 @@ package com.matveyvs.database.repository;
 import com.matveyvs.entity.User;
 import com.matveyvs.utils.ConnectionManager;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
 @AllArgsConstructor
+@Repository
 public class UserRepository {
     CompanyRepository companyRepository;
     private static final String FIND_BY_ID_SQL = """
@@ -20,7 +22,6 @@ public class UserRepository {
         try (var connection = ConnectionManager.open();
              var statement = connection.prepareStatement(FIND_BY_ID_SQL)) {
             statement.setLong(1, id);
-            System.out.println(statement);
             var result = statement.executeQuery();
             User user = null;
             if (result.next()) {

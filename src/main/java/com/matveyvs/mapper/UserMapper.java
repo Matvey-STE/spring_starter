@@ -2,9 +2,9 @@ package com.matveyvs.mapper;
 
 import com.matveyvs.dto.UserDto;
 import com.matveyvs.entity.User;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper implements Mapper<UserDto, User> {
     public UserDto mapFrom(User object) {
         return new UserDto(object.getId(),
