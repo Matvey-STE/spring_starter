@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:app.properties"/>
+
+    <bean name="connectionManager" class="com.matveyvs.utils.ConnectionManager">
+        <constructor-arg name="urlKey" value="${postgres.db}"/>
+        <constructor-arg name="urlName" value="${postgres.name}"/>
+        <constructor-arg name="urlPassword" value="${postgres.password}"/>
+        <constructor-arg name="urlDriver" value="${postgres.driver}"/>
+    </bean>
+
+    <bean name="companyRepository" class="com.matveyvs.database.repository.CompanyRepository">
+    </bean>
+    <bean name="userRepository" class="com.matveyvs.database.repository.UserRepository">
+        <constructor-arg name="companyRepository" ref="companyRepository"/>
+    </bean>
+
+    <bean name="companyMapper" class="com.matveyvs.mapper.CompanyMapper"/>
+
+    <bean name="companyService" class="com.matveyvs.service.CompanyService">
+        <constructor-arg name="companyMapper" ref="companyMapper"/>
+        <constructor-arg name="companyRepository" ref="companyRepository"/>
+    </bean>
+
+    <bean name="userMapper" class="com.matveyvs.mapper.UserMapper"/>
+
+    <bean name="userService" class="com.matveyvs.service.UserService">
+        <constructor-arg name="userMapper" ref="userMapper"/>
+        <constructor-arg name="userRepository" ref="userRepository"/>
+    </bean>
+
+
+</beans>
