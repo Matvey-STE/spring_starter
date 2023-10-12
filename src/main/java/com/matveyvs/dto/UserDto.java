@@ -1,10 +1,10 @@
 package com.matveyvs.dto;
 
-import com.matveyvs.entity.Company;
+import com.matveyvs.entity.Role;
 
 import java.sql.Timestamp;
 
 public record UserDto(Long id, Timestamp birthDate, String firstName,
-                      String lastName, String role, String username,
-                      Company company) {
+                      String lastName, Role role, String username,
+                      CompanyDto companyDto) {
 }

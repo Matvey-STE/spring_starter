@@ -10,6 +10,9 @@ repositories {
 }
 
 dependencies {
+    implementation group: 'org.slf4j', name: 'slf4j-reload4j', version: '2.0.9'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.9'
+
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
 
     implementation 'org.springframework:spring-context:6.0.12'
